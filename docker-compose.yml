@@ -27,7 +27,12 @@ services:
     env_file: .env
     restart: always
 
-   teamcity-ruby-agent:
+  teamcity-ruby-agent:
      build: ./agents/ruby
      env_file: .env
      restart: always
+
+  teamcity-node-agent:
+    build: ./agents/node
+    env_file: .env
+    restart: always
