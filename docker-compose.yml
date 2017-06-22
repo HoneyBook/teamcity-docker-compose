@@ -27,7 +27,7 @@ services:
     env_file: .env
     restart: always
 
-  teamcity-agent:
-    image: jetbrains/teamcity-minimal-agent
-    env_file: .env
-    restart: always
+   teamcity-ruby-agent:
+     build: ./agents/ruby
+     env_file: .env
+     restart: always
