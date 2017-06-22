@@ -7,14 +7,6 @@ volumes:
   teamcity_server_logs: {}
 
 services:
-  postgres:
-    build: ./postgres
-    volumes:
-      - postgres_data:/var/lib/postgresql/data
-      - postgres_backup:/backups
-    env_file: .env
-    restart: always
-
   teamcity-server:
     image: jetbrains/teamcity-server
     volumes:
@@ -22,17 +14,12 @@ services:
       - teamcity_server_logs:/opt/teamcity/logs
     ports:
       - 8111:8111
-    depends_on:
-      - postgres
-    env_file: .env
     restart: always
 
   teamcity-ruby-agent:
      build: ./agents/ruby
-     env_file: .env
      restart: always
 
   teamcity-node-agent:
     build: ./agents/node
-    env_file: .env
     restart: always
