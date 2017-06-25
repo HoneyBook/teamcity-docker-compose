@@ -1,8 +1,6 @@
 version: '2'
 
 volumes:
-  postgres_data: {}
-  postgres_backup: {}
   teamcity_server_data: {}
   teamcity_server_logs: {}
 
@@ -14,12 +12,15 @@ services:
       - teamcity_server_logs:/opt/teamcity/logs
     ports:
       - 8111:8111
+    env_file: .env
     restart: always
 
   teamcity-ruby-agent:
      build: ./agents/ruby
+     env_file: .env
      restart: always
 
   teamcity-node-agent:
     build: ./agents/node
+    env_file: .env
     restart: always
